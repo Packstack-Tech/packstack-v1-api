@@ -24,11 +24,11 @@ router.get('/:id', authenicatePublicRequest, async (req, res) => {
         .then(pack => {
             if (pack.public) { 
                 res.json(pack);
-            } else { //when the pack is private, only allow the owner of the pack to view
+            } else { // when the pack is private, only allow the owner of the pack to view
                 if (req.user && pack.userId == req.user.id) {
                     res.json(pack);
                 } else {
-                    res.sendStatus(403); //return 'forbidden'
+                    res.sendStatus(403); // return 'forbidden'
                 }
             }
         })

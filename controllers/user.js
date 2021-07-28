@@ -88,7 +88,7 @@ router.get('/status', authenticate, async (req, res) => {
 });
 
 
-// Request password reset TODO update path once domains configed
+// Request password reset
 router.post('/request-reset', (req, res) => {
     const { email } = req.body;
     models.User.findOne({ where: { email } })
@@ -96,7 +96,7 @@ router.post('/request-reset', (req, res) => {
             const entropy = new Entropy({ total: 1e6, risk: 1e9 });
             models.PassReset.create({ user_id: user.id, callback_id: entropy.string() })
                 .then(rec => {
-                    sendPasswordReset(user.email, `https://packstack.io/reset/${rec.callback_id}`);
+                    sendPasswordReset(user.email, `https://app.packstack.io/reset/${rec.callback_id}`);
                     return res.sendStatus(200);
                 })
                 .catch(() => res.sendStatus(200));
