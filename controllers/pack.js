@@ -7,6 +7,16 @@ import models from '../models';
 import { authenticate, authenicatePublicRequest } from "../utils/jwt";
 import { csvItems, packItemPayload, packPayload } from "../utils/build-payload";
 
+// Get public packs
+router.get('/public', async (req, res) => {
+    models.Pack.findAll({
+        where: { public: true },
+        attributes: ['id', 'title']
+    })
+        .then(packs => res.json(packs))
+        .catch(err => res.json(err));
+})
+
 // Get
 router.get('/:id', authenicatePublicRequest, async (req, res) => {
     let { id } = req.params;
@@ -50,16 +60,6 @@ router.get('/user/:id', async (req, res) => {
         .then(packs => res.json(packs))
         .catch(err => res.json(err));
 });
-
-// Get public packs
-router.get('/public', async (req, res) => {
-    models.Pack.findAll({
-        where: { public: true },
-        attributes: ['id', 'title']
-    })
-        .then(packs => res.json(packs))
-        .catch(err => res.json(err));
-})
 
 // Create
 router.post('', authenticate, (req, res) => {
