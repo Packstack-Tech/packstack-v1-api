@@ -54,7 +54,8 @@ router.get('/user/:id', async (req, res) => {
 // Get public packs
 router.get('/public', async (req, res) => {
     models.Pack.findAll({
-        where: { public: true }
+        where: { public: true },
+        attributes: ['id', 'title']
     })
         .then(packs => res.json(packs))
         .catch(err => res.json(err));
