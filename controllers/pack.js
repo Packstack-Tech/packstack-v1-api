@@ -51,6 +51,15 @@ router.get('/user/:id', async (req, res) => {
         .catch(err => res.json(err));
 });
 
+// Get public packs
+router.get('/public', async (req, res) => {
+    models.Pack.findAll({
+        where: { public: true }
+    })
+        .then(packs => res.json(packs))
+        .catch(err => res.json(err));
+})
+
 // Create
 router.post('', authenticate, (req, res) => {
     const { payload } = packPayload(req.body);
