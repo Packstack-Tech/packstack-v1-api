@@ -11,7 +11,7 @@ import { csvItems, packItemPayload, packPayload } from "../utils/build-payload";
 router.get('/public', async (req, res) => {
     models.Pack.findAll({
         where: { public: true },
-        attributes: ['id', 'title']
+        attributes: ['id', 'title', 'updatedAt']
     })
         .then(packs => res.json(packs))
         .catch(err => res.json(err));
