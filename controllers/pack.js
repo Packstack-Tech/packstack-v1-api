@@ -1,5 +1,6 @@
 import express from 'express';
 import Sequelize from 'sequelize';
+import slugify from 'slugify'
 
 let router = express.Router();
 
@@ -13,7 +14,14 @@ router.get('/public', async (req, res) => {
         where: { public: true },
         attributes: ['id', 'title', 'updatedAt']
     })
-        .then(packs => res.json(packs))
+        .then(packs => {
+            const urls = packs.map(pack => ({
+                loc: `${pack.id}/${slugify(pack.title, { replacement: '-', lower: true })}`,
+                lastmod: pack.updatedAt
+            }))
+
+            return res.json(urls)
+        })
         .catch(err => res.json(err));
 })
 

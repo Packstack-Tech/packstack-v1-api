@@ -27,6 +27,7 @@
     "node-mailjet": "^3.3.1",
     "pg": "^8.5.1",
     "sequelize": "^6.5.0",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "slugify": "^1.6.0"
   }
 }
