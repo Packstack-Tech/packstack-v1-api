@@ -2,9 +2,9 @@ FROM node:12.7.0-alpine
 
 WORKDIR /usr/api
 
-COPY package*.json ./
-RUN npm install -g yarn
-RUN yarn install
+COPY package*.json .
+RUN npm install --quiet
+RUN npm install -g nodemon
 
 COPY . .
 
