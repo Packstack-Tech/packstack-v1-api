@@ -1,10 +1,10 @@
-FROM node:8.16-alpine
+FROM node:12.7.0-alpine
 
 WORKDIR /usr/api
 
-COPY package.json .
-RUN npm install --quiet
-RUN npm install -g nodemon
+COPY package*.json ./
+RUN npm install -g yarn
+RUN yarn install
 
 COPY . .
 

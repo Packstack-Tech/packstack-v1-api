@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "nodemon -r esm index.js",
+    "dev": "node -r esm index.js",
     "start": "node -r esm index.js",
     "migrate:dev": "sequelize db:migrate",
     "migrate:prod": "sequelize --env production db:migrate",
@@ -24,7 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "mailchimp-api-v3": "^1.13.1",
     "multer": "^1.4.2",
-    "node-mailjet": "^3.3.1",
+    "node-mailjet": "^3.3.4",
     "pg": "^8.5.1",
     "sequelize": "^6.5.0",
     "sequelize-cli": "^6.2.0",
