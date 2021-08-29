@@ -52,8 +52,8 @@ router.post('/login', (req, res) => {
 
 // Update
 router.put('/user', authenticate, (req, res) => {
-    const { username, default_weight_unit } = req.body;
-    models.User.update({ username, default_weight_unit }, { returning: true, where: { id: req.user.id } })
+    const { id, ...attr } = req.body;
+    models.User.update({ ...attr }, { returning: true, where: { id: req.user.id } })
         .then(([rowsUpdated, [updatedItem]]) => {
             if (!rowsUpdated) {
                 return res.status(400).json({ error: 'Unable to update user.' })
