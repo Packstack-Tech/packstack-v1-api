@@ -221,7 +221,7 @@ router.get("/export/:id", authenticate, async (req, res) => {
 router.post("/delete", authenticate, (req, res) => {
   const { packId } = req.body;
   models.Pack.destroy({ where: { id: packId, userId: req.user.id } })
-    .then((rowsUpdated) => res.json(rowsUpdated))
+    .then(() => res.json(packId))
     .catch((err) => res.status(400).json(err));
 });
 

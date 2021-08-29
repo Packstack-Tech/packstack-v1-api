@@ -157,7 +157,7 @@ router.put('', authenticate, async (req, res) => {
 router.post('/delete', authenticate, (req, res) => {
     const { itemId } = req.body;
     models.Item.destroy({ where: { id: itemId, userId: req.user.id } })
-        .then(rowsUpdated => res.json(rowsUpdated))
+        .then(() => res.json(itemId))
         .catch(err => res.status(400).json(err))
 });
 
