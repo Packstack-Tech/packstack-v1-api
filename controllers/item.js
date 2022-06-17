@@ -139,7 +139,7 @@ router.put('', authenticate, async (req, res) => {
         newCat = category;
     }
 
-    const data = !newCat ? { ...payload } : { ...payload, categoryId: newCat.id };
+    const data = !newCat ? payload : { ...payload, categoryId: newCat.id };
     models.Item.update(data, {
         returning: true,
         where: { id, userId: req.user.id }
